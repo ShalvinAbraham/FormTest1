@@ -5,9 +5,9 @@ namespace FormTest1
     public class HomePage
     {
         private IWebDriver driver;
-        public HomePage(IWebDriver driver)
+        public HomePage()
         {
-            this.driver = driver;
+            driver = Context.Driver;
         }
 
         public string Title => driver.Title;
@@ -23,6 +23,11 @@ namespace FormTest1
         public IWebElement Captcha => driver.FindElement(By.Name("captcha_code"));
 
         public IWebElement Submit => driver.FindElement(By.Name("submit"));
+
+        public void Navigate()
+        {
+            driver.Navigate().GoToUrl($"{Context.BaseURL}form.php");
+        }
 
         public void SubmitForm()
         {

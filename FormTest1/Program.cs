@@ -9,12 +9,9 @@ namespace FormTest1
     {
         static void Main(string[] args)
         {
-            var driver = new InternetExplorerDriver();
-            driver.Manage().Window.Maximize();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMinutes(2);
-            driver.Navigate().GoToUrl("https://satlearn.000webhostapp.com/form.php");
+            var homePage = new HomePage();
 
-            var homePage = new HomePage(driver);
+            homePage.Navigate();
 
             homePage.Name.SendKeys("Name1");
             homePage.Email.SendKeys("mail@domain.com");
@@ -23,8 +20,7 @@ namespace FormTest1
             homePage.Captcha.SendKeys("123");
             homePage.SubmitForm();
 
-            driver.Close();
-            driver.Quit();
+            Context.CloseDriver();
         }
     }
 }
