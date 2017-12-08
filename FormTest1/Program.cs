@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
 using System;
 
 namespace FormTest1
@@ -7,7 +9,7 @@ namespace FormTest1
     {
         static void Main(string[] args)
         {
-            var driver = new ChromeDriver();
+            var driver = new InternetExplorerDriver();
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMinutes(2);
             driver.Navigate().GoToUrl("https://satlearn.000webhostapp.com/form.php");
