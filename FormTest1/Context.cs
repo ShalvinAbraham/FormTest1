@@ -3,10 +3,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Configuration;
 
 namespace FormTest1
 {
@@ -14,19 +11,20 @@ namespace FormTest1
     {
         private static IWebDriver driver = null;
 
-        public static IWebDriver Driver { get { return driver ?? InitializeDriver(); } }
+        public static IWebDriver Driver { get { return driver; } }
         public static string BaseURL { get; private set; }
 
         static Context()
         {
-            BaseURL = @"https://satlearn.000webhostapp.com/";
+            BaseURL = ConfigurationManager.AppSettings["BaseURL"];
+            var browser = ConfigurationManager.AppSettings["Browser"] ?? "Chrome";
+            var timeoutMinutes = ConfigurationManager.AppSettings["TimeoutMinutes"] ?? "2";
+
+            InitializeDriver(browser, timeoutMinutes);
         }
 
-        private static IWebDriver InitializeDriver()
+        private static void InitializeDriver(string browser, string timeoutMinutes)
         {
-            var browser = "Chrome";
-            var timeoutMinutes = "2";
-
             switch (browser)
             {
                 case "IE":
@@ -44,8 +42,6 @@ namespace FormTest1
 
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMinutes(Convert.ToDouble(timeoutMinutes));
-
-            return driver;
         }
 
         public static void CloseDriver()
