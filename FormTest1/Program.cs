@@ -11,8 +11,6 @@ namespace FormTest1
             Scenario2();
 
             Console.Read();
-
-            Context.CloseDriver();
         }
 
         private static void Scenario1()
