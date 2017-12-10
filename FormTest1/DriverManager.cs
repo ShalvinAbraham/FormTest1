@@ -33,8 +33,8 @@ namespace FormTest1
 
         public void Dispose()
         {
-            Driver.Close();
-            Driver.Quit();
+            Driver?.Close();
+            Driver?.Quit();
             Driver = null;
         }
 

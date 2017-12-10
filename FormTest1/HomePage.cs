@@ -24,14 +24,8 @@ namespace FormTest1
 
         public IWebElement Submit => driver.FindElement(By.Name("submit"));
 
-        public void Navigate()
-        {
-            driver.Navigate().GoToUrl($"{Context.BaseURL}form.php");
-        }
+        public void Navigate() => driver.Navigate().GoToUrl($"{Context.BaseURL}form.php");
 
-        public void SubmitForm()
-        {
-            Submit.Click();
-        }
+        public void SubmitForm() => Submit.Click();
     }
 }
