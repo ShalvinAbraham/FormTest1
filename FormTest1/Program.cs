@@ -6,9 +6,32 @@ namespace FormTest1
     {
         static void Main(string[] args)
         {
-            SuccessfullSubmit("Name1", "mail@domain.com", "123456", "Message 00001");
+            //SuccessfullSubmit("Name1", "mail@domain.com", "123456", "Message 00001");
+
+            SuccessfullSubmitAgainEmptyInputs("Name1", "mail@domain.com", "123456", "Message 00001");
 
             Console.Read();
+        }
+
+        private static void SuccessfullSubmitAgainEmptyInputs(string name, string email, string phone, string message)
+        {
+            var homePage = new HomePage();
+            var responsePage = new ResponsePage();
+
+            homePage.Navigate();
+
+            homePage.Name.SendKeys(name);
+            homePage.Email.SendKeys(email);
+            homePage.Phone.SendKeys(phone);
+            homePage.Message.SendKeys(message);
+            homePage.Captcha.SendKeys("123");
+            homePage.SubmitForm();
+
+            responsePage.SubmitAgain();
+
+            Console.WriteLine("\nSuccessfullSubmitAgainEmptyInputs");
+
+            Console.WriteLine(homePage.Name.GetAttribute("value").Equals("") ? "PASS" : "FAIL");
         }
 
         private static void SuccessfullSubmit(string name, string email, string phone, string message)
