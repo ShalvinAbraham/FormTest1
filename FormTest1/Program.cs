@@ -6,7 +6,7 @@ namespace FormTest1
     {
         static void Main(string[] args)
         {
-            //SuccessfullSubmit("Name1", "mail@domain.com", "123456", "Message 00001");
+            SuccessfullSubmit("Name1", "mail@domain.com", "123456", "Message 00001");
 
             SuccessfullSubmitAgainEmptyInputs("Name1", "mail@domain.com", "123456", "Message 00001");
 
@@ -15,8 +15,8 @@ namespace FormTest1
 
         private static void SuccessfullSubmitAgainEmptyInputs(string name, string email, string phone, string message)
         {
-            var homePage = new HomePage();
-            var responsePage = new ResponsePage();
+            var homePage = PageFactory.HomePage;
+            var responsePage = PageFactory.ResponsePage;
 
             homePage.Navigate();
 
@@ -36,8 +36,8 @@ namespace FormTest1
 
         private static void SuccessfullSubmit(string name, string email, string phone, string message)
         {
-            var homePage = new HomePage();
-            var responsePage = new ResponsePage();
+            var homePage = PageFactory.HomePage;
+            var responsePage = PageFactory.ResponsePage;
 
             homePage.Navigate();
 
